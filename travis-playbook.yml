@@ -3,9 +3,11 @@
   remote_user: root
   become: yes
 
-  vars_files:
-    - defaults/main.yml
+  vars:
+    new_postgres_user: test_user
+    new_postgres_pass: password
+
+  roles:
+    - bbatsche.PostgreSQL-Install
   tasks:
     - include: tasks/main.yml
-  handlers:
-    - include: handlers/main.yml
