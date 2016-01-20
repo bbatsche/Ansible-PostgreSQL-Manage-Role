@@ -29,7 +29,6 @@ Including an example of how to use your role (for instance, with variables passe
 ```yml
 - hosts: servers
   roles:
-     - role: bbatsche.PostgreSQL-Install
      - role: bbatsche.PostgreSQL-Manage
        new_postgres_user: root_user
        new_postgres_pass: securePassword
@@ -38,7 +37,6 @@ Including an example of how to use your role (for instance, with variables passe
 ```yml
 - hosts: servers
   roles:
-     - role: bbatsche.PostgreSQL-Install
      - role: bbatsche.PostgreSQL-Manage
        new_postgres_user: db_owner
        new_postgres_pass: securePassword
