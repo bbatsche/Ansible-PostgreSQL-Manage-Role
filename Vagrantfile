@@ -7,6 +7,9 @@ Vagrant.configure('2') do |config|
     c.vm.hostname = ENV['HOST_NAME']
   end
 
+  config.vm.provision "shell", inline: "sed -i 's/^AcceptEnv.*$/AcceptEnv */g' /etc/ssh/sshd_config"
+  config.vm.provision "shell", inline: "service ssh restart"
+
   if Vagrant.has_plugin? 'vagrant-cachier'
     config.cache.scope = :box
 

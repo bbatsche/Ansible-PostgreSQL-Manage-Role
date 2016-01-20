@@ -1,0 +1,6 @@
+---
+- hosts: all
+  roles:
+    - bbatsche.PostgreSQL-Install
+  tasks:
+    - include: ../../tasks/main.yml
