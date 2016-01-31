@@ -8,8 +8,10 @@ galaxy_info:
   - name: Ubuntu
     versions:
     - trusty
-  categories:
+  galaxy_tags:
   - database
-  - "database:sql"
+  - sql
+  - postgres
+  - postgresql
 dependencies:
   - role: bbatsche.PostgreSQL-Install
