@@ -1,6 +1,8 @@
 Ansible PostgreSQL Manage Role
 ==============================
 
+[![Build Status](https://travis-ci.org/bbatsche/Ansible-PostgreSQL-Manage-Role.svg?branch=master)](https://travis-ci.org/bbatsche/Ansible-PostgreSQL-Manage-Role)
+
 This role can be used to create either databases or user in PostgreSQL.
 
 Role Variables
