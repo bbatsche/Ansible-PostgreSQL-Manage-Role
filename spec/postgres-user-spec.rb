@@ -1,8 +1,9 @@
-require_relative 'spec_helper'
+require_relative "lib/ansible_helper"
+require_relative "bootstrap"
 
 RSpec.configure do |config|
   config.before :suite do
-    SpecHelper.instance.provision('playbooks/postgres-manage.yml', {
+    AnsibleHelper.instance.playbook("playbooks/postgres-manage.yml", {
       new_postgres_user: "test_user",
       new_postgres_pass: "password"
     })
