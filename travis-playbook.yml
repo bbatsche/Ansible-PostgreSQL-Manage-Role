@@ -4,8 +4,8 @@
   become: yes
 
   vars:
-    new_postgres_user: test_user
-    new_postgres_pass: password
+    new_db_user: test_user
+    new_db_pass: password
 
   roles:
     - bbatsche.PostgreSQL-Install

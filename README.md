@@ -8,10 +8,10 @@ This role can be used to create either databases or user in PostgreSQL.
 Role Variables
 --------------
 
-- `postgres_admin` &mdash; PostgreSQL admin username. Default "vagrant"
-- `postgres_pass` &mdash; Password for PostgreSQL admin user. Default "vagrant"
-- `new_postgres_user` &mdash; New PostgreSQL user to be created
-- `new_postgres_pass` &mdash; Password for new PostgreSQL user
+- `db_admin` &mdash; PostgreSQL admin username. Default "vagrant"
+- `db_pass` &mdash; Password for PostgreSQL admin user. Default "vagrant"
+- `new_db_user` &mdash; New PostgreSQL user to be created
+- `new_db_pass` &mdash; Password for new PostgreSQL user
 - `db_name` &mdash; Optional name of database to be created. If included, user will be granted ownership for that DB only. Otherwise, new user will be granted super user privileges for the entire server.
 
 Dependencies
@@ -32,16 +32,16 @@ Including an example of how to use your role (for instance, with variables passe
 - hosts: servers
   roles:
      - role: bbatsche.PostgreSQL-Manage
-       new_postgres_user: root_user
-       new_postgres_pass: securePassword
+       new_db_user: root_user
+       new_db_pass: securePassword
 ```
 
 ```yml
 - hosts: servers
   roles:
      - role: bbatsche.PostgreSQL-Manage
-       new_postgres_user: db_owner
-       new_postgres_pass: securePassword
+       new_db_user: db_owner
+       new_db_pass: securePassword
        db_name: new_db
 ```
 

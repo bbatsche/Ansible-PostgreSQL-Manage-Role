@@ -2,16 +2,16 @@
 - name: Create Database
   postgresql_db:
     name:           "{{ db_name }}"
-    login_user:     "{{ postgres_admin }}"
-    login_password: "{{ postgres_pass }}"
-    owner:          "{{ new_postgres_user }}"
+    login_user:     "{{ db_admin }}"
+    login_password: "{{ db_pass }}"
+    owner:          "{{ new_db_user }}"
     state:          present
 
 - name: Revoke Public Connect Privileges
   postgresql_privs:
     database:       "{{ db_name }}"
-    login_user:     "{{ postgres_admin }}"
-    login_password: "{{ postgres_pass }}"
+    login_user:     "{{ db_admin }}"
+    login_password: "{{ db_pass }}"
     priv:           CONNECT
     role:           PUBLIC
     state:          absent

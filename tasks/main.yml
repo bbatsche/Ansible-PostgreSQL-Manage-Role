@@ -1,12 +1,12 @@
 ---
 - name: Create User
   postgresql_user:
-    name:           "{{ new_postgres_user }}"
-    password:       "{{ new_postgres_pass }}"
+    name:           "{{ new_db_user }}"
+    password:       "{{ new_db_pass }}"
     db:             postgres
     encrypted:      yes
-    login_user:     "{{ postgres_admin }}"
-    login_password: "{{ postgres_pass }}"
+    login_user:     "{{ db_admin }}"
+    login_password: "{{ db_pass }}"
     state:          present
     role_attr_flags: "{{ 'SUPERUSER,CREATEDB,CREATEROLE,REPLICATION' if db_name|default('') == '' else '' }}"
 

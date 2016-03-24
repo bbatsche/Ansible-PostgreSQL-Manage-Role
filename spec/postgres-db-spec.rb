@@ -4,8 +4,8 @@ require_relative "bootstrap"
 RSpec.configure do |config|
   config.before :suite do
     AnsibleHelper.instance.playbook("playbooks/postgres-manage.yml", {
-      new_postgres_user: "db_owner",
-      new_postgres_pass: "password",
+      new_db_user: "db_owner",
+      new_db_pass: "password",
       db_name: "test_db"
     })
   end
