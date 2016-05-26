@@ -16,19 +16,22 @@ describe "Database should be created" do
     set :env, :PGPASSWORD => 'vagrant'
   end
 
-  # datbase should be in pg_database
-  describe command("psql -w -U vagrant postgres -c \"SELECT count(*) FROM pg_database WHERE datname = 'test_db'\"") do
-    its(:stdout) { should match /^\s*1\s*$/ }
+  describe command(%Q{psql -w -U vagrant postgres -c "SELECT count(*) FROM pg_database WHERE datname = 'test_db'"}) do
+    it "should include test_db as a database" do
+      expect(subject.stdout).to match /^\s*1\s*$/
+    end
   end
 
-  # db_owner should be the owner
-  describe command("psql -w -U vagrant postgres -c \"SELECT u.usename FROM pg_database d JOIN pg_user u ON d.datdba = u.usesysid WHERE d.datname = 'test_db'\"") do
-    its(:stdout) { should match /^\s*db_owner\s*$/ }
+  describe command(%Q{psql -w -U vagrant postgres -c "SELECT u.usename FROM pg_database d JOIN pg_user u ON d.datdba = u.usesysid WHERE d.datname = 'test_db'"}) do
+    it "should have db_owner as the database owner" do
+      expect(subject.stdout).to match /^\s*db_owner\s*$/
+    end
   end
 
-  # db_owner should not have other privileges
-  describe command("psql -w -U vagrant postgres -c \"SELECT rolsuper, rolcreaterole, rolcreatedb, rolcatupdate, rolcanlogin, rolreplication FROM pg_roles WHERE rolname = 'db_owner'\"") do
-    its(:stdout) { should match /^\s*f\s*\|\s*f\s*\|\s*f\s*\|\s*f\s*\|\s*t\s*\|\s*f\s*$/ }
+  describe command(%Q{psql -w -U vagrant postgres -c "SELECT rolsuper, rolcreaterole, rolcreatedb, rolcatupdate, rolcanlogin, rolreplication FROM pg_roles WHERE rolname = 'db_owner'"}) do
+    it "should not grant db_owner any global privileges" do
+      expect(subject.stdout).to match /^\s*f\s*\|\s*f\s*\|\s*f\s*\|\s*f\s*\|\s*t\s*\|\s*f\s*$/
+    end
   end
 end
 
@@ -37,7 +40,7 @@ describe "DB owner should be able to connect to the database" do
     set :env, :PGPASSWORD => 'password'
   end
 
-  describe command("psql -w -U db_owner test_db -c \"SELECT 'hello'\"") do
+  describe command(%Q{psql -w -U db_owner test_db -c "SELECT 'hello'"}) do
     its(:stdout) { should match /hello/ }
 
     its(:exit_status) { should eq 0 }
