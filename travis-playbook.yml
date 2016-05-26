@@ -1,7 +1,5 @@
 ---
 - hosts: all
-  remote_user: root
-  become: yes
 
   vars:
     new_db_user: test_user
@@ -9,5 +7,14 @@
 
   roles:
     - bbatsche.PostgreSQL-Install
+
+  pre_tasks:
+    - name: Get ENV
+      set_fact: raw_value={{ lookup('env', 'DB_NAME') }}
+
+    - name: Set DB Name Version
+      set_fact: db_name={{ raw_value }}
+      when: raw_value != ''
+
   tasks:
     - include: tasks/main.yml
