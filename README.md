@@ -1,3 +1,7 @@
+# DEPRECATED!!
+
+## This role has been abandoned and its functionality replaced by [`bbatsche.PostgreSQL`](https://github.com/bbatsche/Ansible-PostgreSQL-Role). Please update your dependencies to use that role instead.
+
 Ansible PostgreSQL Manage Role
 ==============================
 
